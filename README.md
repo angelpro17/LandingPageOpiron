@@ -68,7 +68,7 @@ public/              # Archivos estáticos (imágenes, iconos)
 ## 🔗 Enlaces de Integración
 
 Los botones "Get Started" están configurados para redirigir a:
-- **Registro**: `https://login-5v5qqaire-angelpro17s-projects.vercel.app/signup`
+- **Registro**: `https://login-app-rho-rose.vercel.app/signup`
 - **Login**: `https://login-5v5qqaire-angelpro17s-projects.vercel.app/login`
 
 ## 📱 Comandos Disponibles
