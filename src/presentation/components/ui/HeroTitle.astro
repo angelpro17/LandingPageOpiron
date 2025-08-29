@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  class?: string;
+}
+
+const { title, class: className = '' } = Astro.props;
+---
+
+<h1 class={`text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight tracking-tight ${className}`} id="hero-title">
+  <slot>{title}</slot>
+</h1>
+
+<script>
+  // Animación de entrada palabra por palabra para el título
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitle) {
+      // Obtener todo el texto del título
+      const titleText = heroTitle.textContent || heroTitle.innerText;
+      
+      // Dividir el texto en palabras, preservando los saltos de línea
+      const words = titleText.split(/\s+/).filter(word => word.length > 0);
+      
+      // Limpiar el contenido original
+      heroTitle.innerHTML = '';
+      
+      // Crear spans para cada palabra con animación
+      words.forEach((word, index) => {
+        const wordSpan = document.createElement('span');
+        wordSpan.textContent = word;
+        wordSpan.style.opacity = '0';
+        wordSpan.style.transform = 'translateY(30px)';
+        wordSpan.style.display = 'inline-block';
+        wordSpan.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        wordSpan.style.marginRight = '0.3em';
+        
+        // Agregar salto de línea después de "AI"
+        if (word === 'AI') {
+          heroTitle.appendChild(wordSpan);
+          heroTitle.appendChild(document.createElement('br'));
+        } else {
+          heroTitle.appendChild(wordSpan);
+        }
+        
+        // Animar cada palabra con delay escalonado
+        setTimeout(() => {
+          wordSpan.style.opacity = '1';
+          wordSpan.style.transform = 'translateY(0)';
+        }, 300 + (index * 150));
+      });
+    }
+  });
+</script>

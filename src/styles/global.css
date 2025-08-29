@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Floating animations - Enhanced with performance optimizations */
+@keyframes slowFloatUpDown {
+  0% {
+    transform: translateY(-30px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(30px) rotate(-0.5deg);
+  }
+  100% {
+    transform: translateY(-30px) rotate(0.5deg);
+  }
+}
+
+@keyframes slowFloatDownUp {
+  0% {
+    transform: translateY(30px) rotate(-0.3deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(0.3deg);
+  }
+  100% {
+    transform: translateY(30px) rotate(-0.3deg);
+  }
+}
+
+.animate-float-up-down {
+  animation: slowFloatUpDown 8s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-float-up-down-delayed {
+  animation: slowFloatDownUp 9s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Pause animation on hover for better UX */
+.animate-float-up-down:hover,
+.animate-float-up-down-delayed:hover {
+  animation-play-state: paused;
+}
+
+/* Logo carousel animation */
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-logo-scroll {
+  animation: logo-scroll 20s linear infinite;
+}

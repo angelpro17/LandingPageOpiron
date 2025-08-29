@@ -1,0 +1,94 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import FAQItem from '../ui/FAQItem.astro';
+
+const faqItems = [
+  {
+    question: "Is there a free trial available?",
+    answer: "An AI chatbot SaaS (Software as a Service) is a cloud-based solution that uses artificial intelligence to automate and enhance customer interactions."
+  },
+  {
+    question: "How secure is my data?",
+    answer: "The chatbot runs on cloud infrastructure and uses AI technologies like Natural Language Processing (NLP) and machine learning to understand and respond to user queries."
+  },
+  {
+    question: "Can I integrate with other tools I use?",
+    answer: "Businesses of all sizes, including startups, e-commerce platforms, customer service teams, and marketing agencies."
+  },
+  {
+    question: "Can I add team members to my account?",
+    answer: "E-commerce, healthcare, real estate, travel, education, and finance are some industries that greatly benefit from chatbot automation."
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our encrypted payment gateway."
+  }
+];
+---
+
+<section id="faq" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <SectionTitle
+        badge="FAQ"
+        title="Frequently Asked Questions"
+        description="Everything you need to know about the platform, pricing and more."
+      />
+
+      <!-- FAQ Items -->
+      <div class="space-y-4">
+        {faqItems.map((item, index) => (
+          <FAQItem 
+            question={item.question} 
+            answer={item.answer} 
+            index={index + 1} 
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // FAQ Accordion functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    let currentOpenFaq: HTMLElement | null = null;
+
+    faqQuestions.forEach((question) => {
+      question.addEventListener('click', () => {
+        const faqItem = question.closest('.faq-item') as HTMLElement;
+        const faqAnswer = faqItem?.querySelector('.faq-answer') as HTMLElement;
+        const faqIcon = question.querySelector('.faq-icon') as HTMLElement;
+        const isCurrentlyOpen = faqAnswer?.style.maxHeight && faqAnswer.style.maxHeight !== '0px';
+
+        // Si hay una pregunta abierta y no es la actual, cerrarla
+        if (currentOpenFaq && currentOpenFaq !== faqItem) {
+          const currentAnswer = currentOpenFaq.querySelector('.faq-answer') as HTMLElement;
+          const currentIcon = currentOpenFaq.querySelector('.faq-icon') as HTMLElement;
+          
+          // Cerrar la pregunta anterior con transición suave
+          if (currentAnswer) currentAnswer.style.maxHeight = '0px';
+          if (currentIcon) currentIcon.style.transform = 'rotate(0deg)';
+          const currentQuestion = currentOpenFaq.querySelector('.faq-question') as HTMLElement;
+          if (currentQuestion) currentQuestion.classList.remove('bg-gray-50');
+        }
+
+        // Toggle de la pregunta actual
+        if (isCurrentlyOpen) {
+          // Cerrar la pregunta actual
+          if (faqAnswer) faqAnswer.style.maxHeight = '0px';
+          if (faqIcon) faqIcon.style.transform = 'rotate(0deg)';
+          (question as HTMLElement).classList.remove('bg-gray-50');
+          currentOpenFaq = null;
+        } else {
+          // Abrir la pregunta actual
+          if (faqAnswer) faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
+          if (faqIcon) faqIcon.style.transform = 'rotate(180deg)';
+          (question as HTMLElement).classList.add('bg-gray-50');
+          currentOpenFaq = faqItem;
+        }
+      });
+    });
+  });
+</script>

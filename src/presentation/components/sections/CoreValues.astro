@@ -1,0 +1,209 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+const values = [
+  {
+    title: "Tracking Data Intelligently",
+    description: "To easily make well-informed decisions across all platforms, track and evaluate important data points.",
+    image: "/688b2688c5d3fbbc92e502e8_stats 1.svg"
+  },
+  {
+    title: "Interactive Feedback System",
+    description: "Gather, organize, and respond to user or team input to improve your processes and tactics.",
+    image: "/688b2688c5d3fbbc92e502e8_stats 1.svg"
+  },
+  {
+    title: "Dynamic Profile Management",
+    description: "Create unique permissions to manage access, generate safe and customized user interactions, and more.",
+    image: "/688b28bb671ccaa24c61037b_stats 2.svg"
+  },
+  {
+    title: "AI-Powered Assistant",
+    description: "Use state-of-the-art AI technology to boost productivity, automate processes, and offer intelligent information.",
+    image: "/688b2688c5d3fbbc92e502e8_stats 1.svg"
+  },
+  {
+    title: "Advanced Reporting Tools",
+    description: "Create and modify comprehensive reports, easily turning unprocessed data into useful insights.",
+    image: "/688b28bb671ccaa24c61037b_stats 2.svg"
+  },
+  {
+    title: "Personalized Content",
+    description: "Provide recommendations and messaging, audience-specific material that is optimized for impact and relevancy.",
+    image: "/688b28bb671ccaa24c61037b_stats 2.svg"
+  }
+];
+---
+
+<section id="values" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto ">
+      <!-- Section Header -->
+      <SectionTitle 
+        badge="Our Values"
+        title="Our Core Values"
+        description="Discover a variety of cutting-edge features and tools intended to streamline processes, boost output, and promote success."
+      />
+
+      <!-- Values Grid -->
+      <!-- COMENTARIO: Esta línea hace que las tarjetas se muestren horizontalmente usando CSS Grid con 3 columnas -->
+      <div class="grid md:grid-cols-3 gap-8" style="perspective: 1200px;">
+        {values.map((value, index) => (
+          <div class="value-card-3d opacity-0 transform translate-y-20 rotate-x-15 scale-95" data-value-3d={index}>
+            <div class="relative rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-gray-100 overflow-hidden" style="background-image: url('/fondocard.svg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+              <!-- Overlay for better text readability -->
+              <div class="absolute inset-0 bg-white bg-opacity-30 rounded-3xl"></div>
+              
+              <!-- Content Container -->
+              <div class="relative z-10">
+                <!-- Image Container -->
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg">
+                  <img 
+                    src={value.image || "/placeholder.svg"} 
+                    alt={value.title}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                
+                <!-- Content -->
+                 <div class="text-center value-content-slide-up">
+                     <h3 class="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                     <p class="text-gray-500 text-sm leading-relaxed">
+                         {value.description}
+                     </p>
+                 </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+    /* 3D Effects for Value Cards */
+    .value-card-3d {
+        transition: all 0.1s ease-out;
+        will-change: transform, opacity;
+        transform-style: preserve-3d;
+    }
+
+    /* Enhanced 3D effects for hover */
+    .value-card-3d:hover {
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform: translateZ(15px) rotateX(-3deg) rotateY(2deg) scale(1.02);
+    }
+
+    .value-card-3d:hover .w-16 {
+        transform: translateZ(10px) rotateY(5deg);
+        transition: transform 0.5s ease;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const valueCards = document.querySelectorAll('.value-card-3d');
+        const valueContents = document.querySelectorAll('.value-content-slide-up');
+        
+        // Slide-up animation for value contents
+        const slideUpObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target as HTMLElement;
+                    const delay = Array.from(valueContents).indexOf(element) * 200;
+                    
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, delay);
+                    
+                    slideUpObserver.unobserve(element);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        valueContents.forEach(content => slideUpObserver.observe(content));
+
+        function updateScrollAnimations() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            // Animate value cards
+            valueCards.forEach((card, index) => {
+                const cardElement = card as HTMLElement;
+                const cardRect = cardElement.getBoundingClientRect();
+                const cardTop = cardRect.top + scrollY;
+
+                // Calculate animation progress
+                const startAnimation = cardTop - windowHeight * 0.9;
+                const endAnimation = cardTop - windowHeight * 0.1;
+
+                let progress = (scrollY - startAnimation) / (endAnimation - startAnimation);
+                progress = Math.max(0, Math.min(1, progress));
+
+                // Apply staggered delay for smoother animation
+                // COMENTARIO: El uso de (index % 3) crea un patrón de 3 elementos que se repite horizontalmente
+                const staggerDelay = (index % 3) * -0;
+                let adjustedProgress = Math.max(0, Math.min(1, progress - staggerDelay));
+                
+                // Smooth easing function
+                adjustedProgress = adjustedProgress * adjustedProgress * (3 - 2 * adjustedProgress);
+
+                if (adjustedProgress < 1) {
+                    // During animation phase - full 3D rotation
+                    // COMENTARIO: Esta línea controla el movimiento horizontal de las tarjetas durante la animación
+                    // Las posiciones [-30, 0, 30] hacen que las tarjetas se distribuyan horizontalmente
+                    const translateX = [(-30), 0, 30][index % 3] * (1 - adjustedProgress);
+                    const translateY = 60 * (1 - adjustedProgress);
+                    const translateZ = adjustedProgress * 50;
+                    const scale = 0.9 + (0.1 * adjustedProgress);
+                    const opacity = adjustedProgress;
+                    
+                    // Rotación 3D suave con transición lenta que termina en posición normal
+                const rotationProgress = Math.max(0, Math.min(1, adjustedProgress * 0.8)); // Más lenta
+                const rotateX = (1 - rotationProgress) * 45; // Rotación suave 45°
+                const rotateY = (1 - rotationProgress) * 60; // Rotación suave 60°
+                const rotateZ = (1 - rotationProgress) * 30; // Rotación suave 30°
+
+                cardElement.style.transform = `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) scale3d(${scale}, ${scale}, 1) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+                    cardElement.style.opacity = opacity.toString();
+                    cardElement.style.transition = 'none';
+                } else {
+                    cardElement.style.transform = `translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+                    cardElement.style.opacity = '1';
+                    cardElement.style.transition = 'transform 0.5s ease-out, opacity 0.3s ease-out';
+                }
+            });
+        }
+
+        // Throttled scroll handler for better performance
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateScrollAnimations();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+        window.addEventListener('resize', requestTick, { passive: true });
+
+        // Initialize on load
+        updateScrollAnimations();
+    });
+ </script>
+
+ <style>
+     .value-content-slide-up {
+         opacity: 0;
+         transform: translateY(30px);
+         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+     }
+ </style>

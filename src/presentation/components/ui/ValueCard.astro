@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  class?: string;
+}
+
+const { title, description, icon, class: className = '' } = Astro.props;
+---
+
+<div class={`text-center feature-card ${className}`}>
+  <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+    <Fragment set:html={icon} />
+  </div>
+  <h3 class="text-xl font-bold text-gray-900 mb-4">{title}</h3>
+  <p class="text-gray-600 text-sm leading-relaxed">
+    {description}
+  </p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.feature-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  });
+</script>

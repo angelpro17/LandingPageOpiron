@@ -1,0 +1,18 @@
+---
+interface Props {
+  text: string;
+  icon?: boolean;
+  class?: string;
+}
+
+const { text, icon = true, class: className = '' } = Astro.props;
+---
+
+<div class={`inline-flex items-center border border-[#ff7357] rounded-full px-4 py-2 mb-6 ${className}`}>
+  {icon && (
+    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+      <path d="M16.3333 14.1667V17.5M18 15.8333H14.6667M10.5 2.5C10.5 6.64211 7.14211 10 3 10C7.14211 10 10.5 13.3579 10.5 17.5C10.5 13.3579 13.8579 10 18 10C13.8579 10 10.5 6.64211 10.5 2.5ZM4.66667 2.5C4.66667 3.42047 3.92047 4.16667 3 4.16667C3.92047 4.16667 4.66667 4.91287 4.66667 5.83333C4.66667 4.91287 5.41287 4.16667 6.33333 4.16667C5.41287 4.16667 4.66667 3.42047 4.66667 2.5Z" stroke="#FF7357" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  )}
+  <span class="ml-2 text-[#ff7357] font-medium">{text}</span>
+</div>

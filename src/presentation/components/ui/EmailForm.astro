@@ -1,0 +1,128 @@
+---
+interface Props {
+  placeholder?: string;
+  buttonText?: string;
+  class?: string;
+}
+
+const { 
+  placeholder = "Enter your email", 
+  buttonText = "Get Started", 
+  class: className = '' 
+} = Astro.props;
+---
+
+<div class={`flex flex-col sm:flex-row gap-3 justify-center items-center max-w-lg mx-auto opacity-0 transform translate-y-8 transition-all duration-1000 ease-out delay-700 ${className}`} id="email-form">
+  <div class="flex-1 w-full">
+    <input
+      type="email"
+      placeholder={placeholder}
+      class="w-full px-5 py-3.5 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent text-gray-900 placeholder-gray-500 bg-white shadow-sm transition-all duration-200"
+      id="email-input"
+      required
+    >
+    <div id="email-error" class="text-red-500 text-sm mt-2 ml-4 hidden"></div>
+  </div>
+  <button 
+    type="button"
+    class="bg-black text-white px-8 py-3.5 rounded-full font-semibold hover:bg-gray-800 transition-all duration-200 whitespace-nowrap shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+    id="email-submit-btn"
+  >
+    {buttonText}
+  </button>
+</div>
+
+<p class="text-white text-sm mt-4 opacity-0 transform translate-y-8 transition-all duration-1000 ease-out delay-900" id="email-form-text">
+  <slot>Join the 5,000+ growing enterprises already</slot>
+</p>
+
+<script>
+  // Animación de entrada y validación de email
+  document.addEventListener('DOMContentLoaded', () => {
+    const emailForm = document.getElementById('email-form');
+    const emailFormText = document.getElementById('email-form-text');
+    const emailInput = document.getElementById('email-input');
+    const emailError = document.getElementById('email-error');
+    const submitBtn = document.getElementById('email-submit-btn');
+    
+    // Animaciones de entrada
+    if (emailForm) {
+      setTimeout(() => {
+        emailForm.classList.remove('opacity-0', 'translate-y-8');
+        emailForm.classList.add('opacity-100', 'translate-y-0');
+      }, 1200);
+    }
+    
+    if (emailFormText) {
+      setTimeout(() => {
+        emailFormText.classList.remove('opacity-0', 'translate-y-8');
+        emailFormText.classList.add('opacity-100', 'translate-y-0');
+      }, 1500);
+    }
+
+    // Función de validación de email
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Función para mostrar error
+    function showError(message) {
+      if (emailError) {
+        emailError.textContent = message;
+        emailError.classList.remove('hidden');
+        emailInput.classList.add('border-red-500', 'focus:ring-red-400');
+        emailInput.classList.remove('border-gray-300', 'focus:ring-orange-400');
+      }
+    }
+
+    // Función para ocultar error
+    function hideError() {
+      if (emailError) {
+        emailError.classList.add('hidden');
+        emailInput.classList.remove('border-red-500', 'focus:ring-red-400');
+        emailInput.classList.add('border-gray-300', 'focus:ring-orange-400');
+      }
+    }
+
+    // Validación en tiempo real
+    if (emailInput) {
+      emailInput.addEventListener('input', () => {
+        const email = emailInput.value.trim();
+        if (email && !validateEmail(email)) {
+          showError('Por favor, ingresa un email válido');
+        } else {
+          hideError();
+        }
+      });
+
+      emailInput.addEventListener('blur', () => {
+        const email = emailInput.value.trim();
+        if (email && !validateEmail(email)) {
+          showError('Por favor, ingresa un email válido');
+        }
+      });
+    }
+
+    // Manejo del envío
+    if (submitBtn) {
+      submitBtn.addEventListener('click', () => {
+        const email = emailInput.value.trim();
+        
+        if (!email) {
+          showError('El email es requerido');
+          return;
+        }
+        
+        if (!validateEmail(email)) {
+          showError('Por favor, ingresa un email válido');
+          return;
+        }
+        
+        // Si la validación pasa, redirigir
+        hideError();
+        window.location.href = 'https://login-5v5qqaire-angelpro17s-projects.vercel.app/signup?email=' + encodeURIComponent(email);
+      });
+    }
+  });
+</script>

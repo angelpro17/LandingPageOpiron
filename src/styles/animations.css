@@ -1,0 +1,105 @@
+/* Floating animations - Slow vertical movement */
+@keyframes slowFloatUpDown {
+  0% {
+    transform: translateY(-30px);
+  }
+  50% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes slowFloatDownUp {
+  0% {
+    transform: translateY(30px);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(30px);
+  }
+}
+
+.animate-float-up-down {
+  animation: slowFloatUpDown 8s ease-in-out infinite;
+}
+
+.animate-float-up-down-delayed {
+  animation: slowFloatDownUp 8s ease-in-out infinite;
+}
+
+/* Hide floating elements on mobile */
+@media (max-width: 1024px) {
+  .animate-float-up-down,
+  .animate-float-up-down-delayed {
+    display: none;
+  }
+}
+
+/* Logo Carousel Animation */
+.logo-carousel-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.logo-carousel-track {
+  width: calc(200% + 64px);
+  animation: logo-scroll 15s linear infinite;
+}
+
+.logo-slide {
+  min-width: 200px;
+  height: 60px;
+}
+
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+/* Responsive logo carousel */
+@media (max-width: 768px) {
+  .logo-slide {
+    min-width: 150px;
+    height: 40px;
+  }
+  
+  .logo-slide span {
+    font-size: 1.25rem;
+  }
+}
+
+/* Animation for feature cards with 90 degree rotation */
+.feature-card {
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center bottom;
+  perspective: 1000px;
+}
+
+/* Animación diagonal izquierda para tarjetas impares */
+.feature-card:nth-child(odd) {
+  transform: translateY(60px) translateX(-50px) rotateX(30deg) rotateY(20deg) scale(0.85);
+}
+
+/* Animación diagonal derecha para tarjetas pares */
+.feature-card:nth-child(even) {
+  transform: translateY(60px) translateX(50px) rotateX(30deg) rotateY(-20deg) scale(0.85);
+}
+
+/* Animación para tarjetas visibles */
+.feature-card.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) rotateX(0) rotateY(0) scale(1);
+}

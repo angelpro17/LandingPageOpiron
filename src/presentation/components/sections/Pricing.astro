@@ -1,0 +1,216 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import PricingCard from '../ui/PricingCard.astro';
+
+const pricingPlans = [
+  {
+    name: "Starter",
+    monthlyPrice: "$0",
+    yearlyPrice: "$0",
+    features: [
+      "Access to core AI features",
+      "3 team members",
+      "Email support",
+      "1,000 AI tasks/month",
+      "Basic analytics"
+    ],
+    buttonText: "Get Started",
+    buttonLink: "https://login-5v5qqaire-angelpro17s-projects.vercel.app/signup",
+    popular: false
+  },
+  {
+    name: "Premium",
+    monthlyPrice: "$15",
+    yearlyPrice: "$49",
+    features: [
+      "Access to core AI features",
+      "3 team members",
+      "Email support",
+      "1,000 AI tasks/month",
+      "Basic analytics"
+    ],
+    buttonText: "Get Started",
+    buttonLink: "https://login-5v5qqaire-angelpro17s-projects.vercel.app/signup",
+    popular: false
+  },
+  {
+    name: "Teams",
+    monthlyPrice: "$150",
+    yearlyPrice: "$249",
+    features: [
+      "Access to core AI features",
+      "3 team members",
+      "Email support",
+      "1,000 AI tasks/month",
+      "Basic analytics"
+    ],
+    buttonText: "Get Started",
+    buttonLink: "https://login-5v5qqaire-angelpro17s-projects.vercel.app/signup",
+    popular: false
+  }
+];
+---
+
+<section id="pricing" class="py-20 relative" style="background-image: url('/pricing-background.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <!-- Section Header -->
+      <SectionTitle 
+        badge="Pricing plan"
+        title="Simple, transparent pricing no hidden fees."
+        description="Clear price with no additional fees. Everything you require to improve your financial management."
+      />
+      
+      <!-- Pricing Toggle -->
+      <div class="flex items-center justify-center mb-12">
+        <div class="bg-gray-100 p-1 rounded-full flex">
+          <button id="monthly-btn" class="px-6 py-2 rounded-full bg-[#FF7357] text-white font-medium transition-colors">
+            Monthly
+          </button>
+          <button id="yearly-btn" class="px-6 py-2 rounded-full text-gray-600 font-medium hover:text-gray-900 transition-colors">
+            Yearly
+          </button>
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid md:grid-cols-3 gap-8 pricing-cards-container">
+        {pricingPlans.map((plan, index) => (
+          <div class="pricing-card-wrapper pricing-card-slide-up" data-card-index={index}>
+            <PricingCard 
+              name={plan.name}
+              monthlyPrice={plan.monthlyPrice}
+              yearlyPrice={plan.yearlyPrice}
+              features={plan.features}
+              buttonText={plan.buttonText}
+              buttonLink={plan.buttonLink}
+              popular={plan.popular}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+  }
+  
+  .pricing-card-wrapper {
+    height: 500px; /* Altura fija para todas las cards */
+    min-height: 500px;
+  }
+  
+  .pricing-card-wrapper > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .pricing-card-wrapper > div > a {
+    margin-top: auto;
+  }
+  
+  /* Animación de aparición chica que se agranda */
+  .pricing-card-slide-up {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .pricing-card-slide-up.animate {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Asegurar que el contenido de las features tenga altura uniforme */
+  .pricing-card-wrapper ul {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 200px;
+  }
+  
+  @media (max-width: 768px) {
+    .pricing-cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .pricing-card-wrapper {
+      height: auto;
+      min-height: 450px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const monthlyBtn = document.getElementById('monthly-btn');
+    const yearlyBtn = document.getElementById('yearly-btn');
+    const monthlyPrices = document.querySelectorAll('.monthly-price');
+    const yearlyPrices = document.querySelectorAll('.yearly-price');
+    const monthlyPeriods = document.querySelectorAll('.monthly-period');
+    const yearlyPeriods = document.querySelectorAll('.yearly-period');
+    const pricingCards = document.querySelectorAll('.pricing-card-wrapper');
+
+    // Default to monthly
+    showMonthlyPricing();
+
+    monthlyBtn?.addEventListener('click', showMonthlyPricing);
+    yearlyBtn?.addEventListener('click', showYearlyPricing);
+
+    function showMonthlyPricing() {
+      monthlyBtn?.classList.add('bg-[#FF7357]', 'text-white');
+      monthlyBtn?.classList.remove('text-gray-600');
+      yearlyBtn?.classList.remove('bg-[#FF7357]', 'text-white');
+      yearlyBtn?.classList.add('text-gray-600');
+
+      monthlyPrices.forEach(el => el.classList.remove('hidden'));
+      yearlyPrices.forEach(el => el.classList.add('hidden'));
+      monthlyPeriods.forEach(el => el.classList.remove('hidden'));
+      yearlyPeriods.forEach(el => el.classList.add('hidden'));
+    }
+
+    function showYearlyPricing() {
+      yearlyBtn?.classList.add('bg-[#FF7357]', 'text-white');
+      yearlyBtn?.classList.remove('text-gray-600');
+      monthlyBtn?.classList.remove('bg-[#FF7357]', 'text-white');
+      monthlyBtn?.classList.add('text-gray-600');
+
+      yearlyPrices.forEach(el => el.classList.remove('hidden'));
+      monthlyPrices.forEach(el => el.classList.add('hidden'));
+      yearlyPeriods.forEach(el => el.classList.remove('hidden'));
+      monthlyPeriods.forEach(el => el.classList.add('hidden'));
+    }
+
+    // Animación de aparición chica que se agranda al hacer scroll
+    const pricingCardsSlideUp = document.querySelectorAll('.pricing-card-slide-up');
+    
+    const slideUpObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          const delay = Array.from(pricingCardsSlideUp).indexOf(element) * 300;
+          
+          setTimeout(() => {
+            element.classList.add('animate');
+          }, delay);
+          
+          slideUpObserver.unobserve(element);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    });
+    
+    pricingCardsSlideUp.forEach(card => slideUpObserver.observe(card));
+  });
+</script>

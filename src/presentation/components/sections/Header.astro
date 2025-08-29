@@ -1,0 +1,96 @@
+---
+// Header component
+---
+
+<header class="absolute top-5 left-1/2 transform -translate-x-1/2 z-10 w-full max-w-5xl mx-auto px-4">
+  <div class="border-amber-500 bg-white/100 backdrop-blur-sm rounded-full shadow-sm border px-3 py-5 flex items-center justify-between">
+    <!-- Logo -->
+    <div class=" flex items-center space-x-2">
+      <img src="/opironLogo.svg" alt="Opiron" class="h-30 w-30">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="hidden md:flex items-center space-x-6">
+      <a href="/" class="text-[#FF7357] font-medium hover:text-[#FF7357] transition-colors">Home</a>
+      <a href="#features" class="text-gray-600 hover:text-[#FF7357] transition-colors">Features</a>
+      <a href="#values" class="text-gray-600 hover:text-[#FF7357] transition-colors">Values</a>
+      <a href="#pricing" class="text-gray-600 hover:text-[#FF7357] transition-colors">Pricing</a>
+      <a href="#faq" class="text-gray-600 hover:text-[#FF7357] transition-colors">FAQ</a>
+    </nav>
+
+    <!-- CTA Button -->
+    <div class="hidden md:block">
+      <a href="#" class="bg-black text-white px-10 py-5 rounded-full text-xl transition-colors">
+        Buy Template
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden p-1">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+  </div>
+</header>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll más lento para los enlaces de navegación
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    // Función para scroll suave con efecto lento y fluido
+    function smoothScrollTo(target: Element) {
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 500; // 2 segundos para un efecto más prolongado
+      let start: number | null = null;
+      
+      function animation(currentTime: number) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        // Easing cubic-bezier para un efecto más suave y lento
+        const easeProgress = easeInOutCubic(progress);
+        const currentPosition = startPosition + (distance * easeProgress);
+        
+        window.scrollTo(0, currentPosition);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animation);
+        }
+      }
+      
+      // Función de easing cubic para un movimiento más fluido y lento
+      function easeInOutCubic(t: number): number {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+      
+      requestAnimationFrame(animation);
+    }
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const targetId = link.getAttribute('href');
+        if (targetId) {
+          const targetSection = document.querySelector(targetId);
+          
+          if (targetSection) {
+            smoothScrollTo(targetSection);
+          }
+        }
+      });
+    });
+  });
+</script>

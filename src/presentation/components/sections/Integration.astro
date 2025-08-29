@@ -1,0 +1,517 @@
+---
+// src/components/IntegrationSection.astro
+import SectionTitle from '../ui/SectionTitle.astro';
+import LogoCarousel from '../ui/LogoCarousel.astro';
+---
+
+<section class="py-20 bg-white relative overflow-hidden">
+    <div class="container mx-auto px-6 relative">
+        <SectionTitle 
+            badge="Integration"
+            title="Connect the tools you already use"
+            description="Our AI platform works with the apps you rely on every day so you can automate, analyze, and collaborate without switching tabs."
+        />
+
+        <!-- Neural Network Visualization -->
+        <div class="relative w-full h-96 md:h-[500px] max-w-6xl mx-auto">
+            <!-- SVG for connection lines with flowing light animation -->
+            <svg class="absolute inset-0 w-full h-full z-0" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <!-- Gradientes corregidos para las líneas de la sección extendida -->
+                    <linearGradient id="subtleGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(59, 130, 246, 0.1);stop-opacity:0.1"/>
+                        <stop offset="50%" style="stop-color:rgba(59, 130, 246, 0.4);stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:rgba(59, 130, 246, 0.1);stop-opacity:0.1"/>
+                    </linearGradient>
+
+                    <linearGradient id="subtleGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(139, 92, 246, 0.1);stop-opacity:0.1"/>
+                        <stop offset="50%" style="stop-color:rgba(139, 92, 246, 0.4);stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:rgba(139, 92, 246, 0.1);stop-opacity:0.1"/>
+                    </linearGradient>
+
+                    <linearGradient id="subtleGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(34, 197, 94, 0.1);stop-opacity:0.1"/>
+                        <stop offset="50%" style="stop-color:rgba(34, 197, 94, 0.4);stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:rgba(34, 197, 94, 0.1);stop-opacity:0.1"/>
+                    </linearGradient>
+
+                    <!-- Flowing light gradients that move back and forth -->
+                    <linearGradient id="flowingLight1">
+                        <stop offset="0%" style="stop-color:rgba(59, 130, 246, 0);stop-opacity:0"/>
+                        <stop offset="30%" style="stop-color:rgba(59, 130, 246, 0.4);stop-opacity:0.4"/>
+                        <stop offset="50%" style="stop-color:rgba(59, 130, 246, 1);stop-opacity:1"/>
+                        <stop offset="70%" style="stop-color:rgba(59, 130, 246, 0.4);stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:rgba(59, 130, 246, 0);stop-opacity:0"/>
+                        <animateTransform attributeName="gradientTransform" type="translate"
+                                          values="-100 0; 100 0; -100 0" dur="3s" repeatCount="indefinite"/>
+                    </linearGradient>
+
+                    <linearGradient id="flowingLight2">
+                        <stop offset="0%" style="stop-color:rgba(139, 92, 246, 0);stop-opacity:0"/>
+                        <stop offset="30%" style="stop-color:rgba(139, 92, 246, 0.4);stop-opacity:0.4"/>
+                        <stop offset="50%" style="stop-color:rgba(139, 92, 246, 1);stop-opacity:1"/>
+                        <stop offset="70%" style="stop-color:rgba(139, 92, 246, 0.4);stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:rgba(139, 92, 246, 0);stop-opacity:0"/>
+                        <animateTransform attributeName="gradientTransform" type="translate"
+                                          values="-100 0; 100 0; -100 0" dur="3.5s" repeatCount="indefinite"/>
+                    </linearGradient>
+
+                    <linearGradient id="flowingLight3">
+                        <stop offset="0%" style="stop-color:rgba(34, 197, 94, 0);stop-opacity:0"/>
+                        <stop offset="30%" style="stop-color:rgba(34, 197, 94, 0.4);stop-opacity:0.4"/>
+                        <stop offset="50%" style="stop-color:rgba(34, 197, 94, 1);stop-opacity:1"/>
+                        <stop offset="70%" style="stop-color:rgba(34, 197, 94, 0.4);stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:rgba(34, 197, 94, 0);stop-opacity:0"/>
+                        <animateTransform attributeName="gradientTransform" type="translate"
+                                          values="-100 0; 100 0; -100 0" dur="4s" repeatCount="indefinite"/>
+                    </linearGradient>
+
+                    <linearGradient id="flowingLight4">
+                        <stop offset="0%" style="stop-color:rgba(236, 72, 153, 0);stop-opacity:0"/>
+                        <stop offset="30%" style="stop-color:rgba(236, 72, 153, 0.4);stop-opacity:0.4"/>
+                        <stop offset="50%" style="stop-color:rgba(236, 72, 153, 1);stop-opacity:1"/>
+                        <stop offset="70%" style="stop-color:rgba(236, 72, 153, 0.4);stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:rgba(236, 72, 153, 0);stop-opacity:0"/>
+                        <animateTransform attributeName="gradientTransform" type="translate"
+                                          values="-100 0; 100 0; -100 0" dur="4.2s" repeatCount="indefinite"/>
+                    </linearGradient>
+
+                    <!-- Static base lines -->
+                    <linearGradient id="baseLine">
+                        <stop offset="0%" style="stop-color:rgba(203, 213, 225, 0.3);stop-opacity:0.3"/>
+                        <stop offset="50%" style="stop-color:rgba(148, 163, 184, 0.6);stop-opacity:0.6"/>
+                        <stop offset="100%" style="stop-color:rgba(203, 213, 225, 0.3);stop-opacity:0.3"/>
+                    </linearGradient>
+
+                    <!-- Glow effect -->
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+
+                    <filter id="pulse">
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Static base connections (always visible, subtle) - Only hub connections -->
+                <g opacity="0.4">
+                    <!-- From center (400,200) to all icons in circular formation -->
+                    <line x1="400" y1="200" x2="120" y2="100" stroke="url(#baseLine)" stroke-width="1.5"/>
+                    <line x1="400" y1="200" x2="400" y2="70" stroke="url(#baseLine)" stroke-width="1.5"/>
+                    <line x1="400" y1="200" x2="680" y2="100" stroke="url(#baseLine)" stroke-width="1.5"/>
+                    <line x1="400" y1="200" x2="730" y2="200" stroke="url(#baseLine)" stroke-width="1.5"/>
+                    <line x1="400" y1="200" x2="680" y2="300" stroke="url(#baseLine)" stroke-width="1.5"/>
+                    <line x1="400" y1="200" x2="400" y2="330" stroke="url(#baseLine)" stroke-width="1.5"/>
+                    <line x1="400" y1="200" x2="120" y2="300" stroke="url(#baseLine)" stroke-width="1.5"/>
+                    <line x1="400" y1="200" x2="70" y2="200" stroke="url(#baseLine)" stroke-width="1.5"/>
+                </g>
+
+                <!-- Animated flowing light connections - Only hub connections -->
+                <g filter="url(#glow)">
+                    <!-- Only connections from center to each icon in circular formation -->
+                    <!-- Top-left -->
+                    <line x1="400" y1="200" x2="120" y2="100" stroke="url(#flowingLight1)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="0s"/>
+                    </line>
+
+                    <!-- Top-center -->
+                    <line x1="400" y1="200" x2="400" y2="70" stroke="url(#flowingLight2)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+                    </line>
+
+                    <!-- Top-right -->
+                    <line x1="400" y1="200" x2="680" y2="100" stroke="url(#flowingLight3)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="1s"/>
+                    </line>
+
+                    <!-- Far right -->
+                    <line x1="400" y1="200" x2="730" y2="200" stroke="url(#flowingLight4)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="1.5s"/>
+                    </line>
+
+                    <!-- Bottom-right -->
+                    <line x1="400" y1="200" x2="680" y2="300" stroke="url(#flowingLight1)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="2s"/>
+                    </line>
+
+                    <!-- Bottom-center -->
+                    <line x1="400" y1="200" x2="400" y2="330" stroke="url(#flowingLight2)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="2.5s"/>
+                    </line>
+
+                    <!-- Bottom-left -->
+                    <line x1="400" y1="200" x2="120" y2="300" stroke="url(#flowingLight3)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="3s"/>
+                    </line>
+
+                    <!-- Far left -->
+                    <line x1="400" y1="200" x2="70" y2="200" stroke="url(#flowingLight4)" stroke-width="3" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite" begin="3.5s"/>
+                    </line>
+                </g>
+
+                <!-- Additional pulse effects for more dynamic look -->
+                <g filter="url(#pulse)" opacity="0.6">
+                    <circle cx="400" cy="200" r="3" fill="#3B82F6">
+                        <animate attributeName="r" values="2;8;2" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </svg>
+
+            <!-- Tool Icons positioned in circular formation -->
+
+            <!-- Top-left -->
+            <div class="absolute top-16 left-20 w-16 h-16 flex items-center justify-center tool-icon z-20">
+                <img src="/integration-tool-7.webp" alt="Ninth Icon" class="w-full h-full object-cover rounded-lg shadow-lg"/>
+            </div>
+
+
+
+            <!-- Top-right -->
+            <div class="absolute top-16 right-20 w-16 h-16 flex items-center justify-center tool-icon z-20">
+                <img src="/integration-tool-3.webp" alt="Fourth Icon" class="w-full h-full object-cover rounded-lg shadow-lg"/>
+            </div>
+
+            <!-- Far-right -->
+            <div class="absolute top-1/2 right-8 transform -translate-y-1/2 w-16 h-16 flex items-center justify-center tool-icon z-20">
+                <img src="/integration-tool-4.webp" alt="Fifth Icon" class="w-full h-full object-cover rounded-lg shadow-lg"/>
+            </div>
+
+            <!-- Central AI Logo -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center z-30 central-logo">
+                <img src="/integration-tool-1.webp" alt="First Icon" class="w-full h-full object-cover rounded-xl shadow-2xl"/>
+            </div>
+
+            <!-- Bottom-right -->
+            <div class="absolute bottom-16 right-20 w-16 h-16 flex items-center justify-center tool-icon z-20">
+                <img src="/integration-tool-5.webp" alt="Sixth Icon" class="w-full h-full object-cover rounded-lg shadow-lg"/>
+            </div>
+
+
+
+            <!-- Bottom-left -->
+            <div class="absolute bottom-16 left-20 w-16 h-16 flex items-center justify-center tool-icon z-20">
+                <img src="/integration-tool-6.webp" alt="Eighth Icon" class="w-full h-full object-cover rounded-lg shadow-lg"/>
+            </div>
+
+            <!-- Far-left -->
+            <div class="absolute top-1/2 left-8 transform -translate-y-1/2 w-16 h-16 flex items-center justify-center tool-icon z-20">
+                <img src="/integration-tool-2.webp" alt="Second Icon" class="w-full h-full object-cover rounded-lg shadow-lg"/>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Extended Integration Section -->
+    <div class="px-4 md:px-8 lg:px-12">
+        <div class="relative pb-20 rounded-2xl mx-auto max-w-7xl" style="background-image: url('/hero-background.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <!-- Extended SVG for bottom connections -->
+        <svg class="absolute top-0 w-full h-64" viewBox="0 0 1000 250" preserveAspectRatio="xMidYMid meet">
+            <defs>
+                <!-- Asegurar que los gradientes estén definidos aquí también -->
+                <linearGradient id="subtleGradient1Extended" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(59, 130, 246, 0.1);stop-opacity:0.1"/>
+                    <stop offset="50%" style="stop-color:rgba(59, 130, 246, 0.4);stop-opacity:0.4"/>
+                    <stop offset="100%" style="stop-color:rgba(59, 130, 246, 0.1);stop-opacity:0.1"/>
+                </linearGradient>
+
+                <linearGradient id="subtleGradient2Extended" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(139, 92, 246, 0.1);stop-opacity:0.1"/>
+                    <stop offset="50%" style="stop-color:rgba(139, 92, 246, 0.4);stop-opacity:0.4"/>
+                    <stop offset="100%" style="stop-color:rgba(139, 92, 246, 0.1);stop-opacity:0.1"/>
+                </linearGradient>
+
+                <linearGradient id="subtleGradient3Extended" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(34, 197, 94, 0.1);stop-opacity:0.1"/>
+                    <stop offset="50%" style="stop-color:rgba(34, 197, 94, 0.4);stop-opacity:0.4"/>
+                    <stop offset="100%" style="stop-color:rgba(34, 197, 94, 0.1);stop-opacity:0.1"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Continuing the subtle lines downward -->
+            <path d="M 500 0 Q 500 50 500 100" stroke="url(#subtleGradient2Extended)" stroke-width="1" fill="none" opacity="0.4">
+                <animate attributeName="opacity" values="0.1;0.5;0.1" dur="12s" repeatCount="indefinite"/>
+            </path>
+            
+            <path d="M 480 10 Q 480 60 480 110" stroke="url(#subtleGradient1Extended)" stroke-width="0.8" fill="none" opacity="0.3">
+                <animate attributeName="opacity" values="0.05;0.4;0.05" dur="15s" repeatCount="indefinite"/>
+            </path>
+            
+            <path d="M 520 10 Q 520 60 520 110" stroke="url(#subtleGradient3Extended)" stroke-width="0.8" fill="none" opacity="0.3">
+                <animate attributeName="opacity" values="0.05;0.4;0.05" dur="18s" repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Branching connections to bottom icons -->
+            <path d="M 500 100 Q 350 120 200 140" stroke="url(#subtleGradient1Extended)" stroke-width="1" fill="none" opacity="0.4">
+                <animate attributeName="opacity" values="0.1;0.5;0.1" dur="20s" repeatCount="indefinite"/>
+            </path>
+            
+            <path d="M 500 100 Q 650 120 800 140" stroke="url(#subtleGradient2Extended)" stroke-width="1" fill="none" opacity="0.4">
+                <animate attributeName="opacity" values="0.1;0.5;0.1" dur="22s" repeatCount="indefinite"/>
+            </path>
+            
+            <path d="M 500 100 Q 400 150 300 180" stroke="url(#subtleGradient3Extended)" stroke-width="0.8" fill="none" opacity="0.3">
+                <animate attributeName="opacity" values="0.05;0.4;0.05" dur="25s" repeatCount="indefinite"/>
+            </path>
+            
+            <path d="M 500 100 Q 600 150 700 180" stroke="url(#subtleGradient1Extended)" stroke-width="0.8" fill="none" opacity="0.3">
+                <animate attributeName="opacity" values="0.05;0.4;0.05" dur="28s" repeatCount="indefinite"/>
+            </path>
+        </svg>
+        
+
+        
+        <!-- Bottom Integration Content -->
+        <div class="container mx-auto px-6 relative z-10 pt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4 opacity-0 transform translate-y-8 transition-all duration-1000 ease-out" id="cta-title">
+                    Ready to Supercharge Your<br>
+                    <span class="text-gray-900">Workflow with AI?</span>
+                </h3>
+                <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed font-medium opacity-0 transform translate-y-8 transition-all duration-1000 ease-out delay-300" id="cta-description">
+                    Start your free trial today. No credit card required. Cancel anytime.
+                </p>
+                
+                <!-- Email signup form -->
+                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-lg mx-auto mb-4 opacity-0 transform translate-y-8 transition-all duration-1000 ease-out delay-600" id="cta-form">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email" 
+                        class="flex-1 px-5 py-3.5 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent text-gray-900 placeholder-gray-500 bg-white shadow-sm"
+                    >
+                    <a href="https://login-5v5qqaire-angelpro17s-projects.vercel.app/signup" class="bg-black text-white px-8 py-3.5 rounded-full font-semibold hover:bg-gray-800 transition-all duration-200 whitespace-nowrap shadow-lg hover:shadow-xl text-center">
+                        Get Started
+                    </a>
+                </div>
+                
+                <p class="text-gray-600 text-sm mt-4 opacity-0 transform translate-y-8 transition-all duration-1000 ease-out delay-900" id="cta-text">
+                    Join the 5,000+ growing enterprises already
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .tool-icon {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: subtleFloat 6s ease-in-out infinite;
+    }
+
+    .tool-icon:hover {
+        transform: scale(1.1) translateY(-2px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .tool-icon img {
+        transition: all 0.3s ease;
+        filter: brightness(1) saturate(1);
+    }
+
+    .tool-icon:hover img {
+        filter: brightness(1.1) saturate(1.2);
+        transform: scale(1.05);
+    }
+
+    .central-logo {
+        animation: centralPulse 4s ease-in-out infinite;
+        transition: all 0.4s ease;
+    }
+
+    .central-logo:hover {
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    }
+
+    .central-logo img {
+        transition: all 0.3s ease;
+    }
+
+    .central-logo:hover img {
+        transform: scale(1.1);
+        filter: brightness(1.1) saturate(1.2);
+    }
+
+    .connection-line {
+        animation: connectionPulse 3s ease-in-out infinite;
+        transform-origin: top;
+    }
+
+    @keyframes connectionPulse {
+        0%, 100% {
+            opacity: 0.4;
+            transform: scaleY(0.8);
+        }
+        50% {
+            opacity: 0.8;
+            transform: scaleY(1.2);
+        }
+    }
+
+    .particle {
+        opacity: 0;
+    }
+
+    .particle-1 {
+        animation: flowDown 2.5s ease-in-out infinite;
+    }
+
+    .particle-2 {
+        animation: flowDown 2.5s ease-in-out infinite 0.8s;
+    }
+
+    .particle-3 {
+        animation: flowDown 2.5s ease-in-out infinite 1.6s;
+    }
+
+    @keyframes flowDown {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, 0) scale(0.5);
+        }
+        20% {
+            opacity: 1;
+            transform: translate(-50%, 0) scale(1);
+        }
+        80% {
+            opacity: 1;
+            transform: translate(-50%, 80px) scale(0.8);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(-50%, 100px) scale(0.3);
+        }
+    }
+
+    @keyframes subtleFloat {
+        0%, 100% {
+            transform: translateY(5px) rotate(0deg);
+        }
+        25% {
+            transform: translateY(-2px) rotate(0.5deg);
+        }
+        50% {
+            transform: translateY(-4px) rotate(0deg);
+        }
+        75% {
+            transform: translateY(-2px) rotate(-0.5deg);
+        }
+    }
+
+    @keyframes centralPulse {
+        0%, 100% {
+            transform: translate(-50%, -50%) scale(1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        50% {
+            transform: translate(-50%, -50%) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+    }
+
+    /* Staggered animation delays */
+    .tool-icon:nth-of-type(1) { animation-delay: -0.5s; }
+    .tool-icon:nth-of-type(2) { animation-delay: -1s; }
+    .tool-icon:nth-of-type(3) { animation-delay: -1.5s; }
+    .tool-icon:nth-of-type(4) { animation-delay: -2s; }
+    .tool-icon:nth-of-type(5) { animation-delay: -2.5s; }
+    .tool-icon:nth-of-type(6) { animation-delay: -3s; }
+    .tool-icon:nth-of-type(7) { animation-delay: -3.5s; }
+    .tool-icon:nth-of-type(8) { animation-delay: -4s; }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tool-icon img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .central-logo {
+            width: 56px;
+            height: 56px;
+        }
+
+        .central-logo .w-12 {
+            width: 44px;
+            height: 44px;
+        }
+
+        .central-logo img {
+            width: 36px;
+            height: 36px;
+        }
+    }
+</style>
+
+<script>
+    // Animación de entrada para el CTA final
+    document.addEventListener('DOMContentLoaded', () => {
+        const ctaTitle = document.getElementById('cta-title');
+        const ctaDescription = document.getElementById('cta-description');
+        const ctaForm = document.getElementById('cta-form');
+        const ctaText = document.getElementById('cta-text');
+        
+        // Crear un observer para detectar cuando la sección es visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animar título
+                    setTimeout(() => {
+                        if (ctaTitle) {
+                            ctaTitle.classList.remove('opacity-0', 'translate-y-8');
+                            ctaTitle.classList.add('opacity-100', 'translate-y-0');
+                        }
+                    }, 100);
+                    
+                    // Animar descripción
+                    setTimeout(() => {
+                        if (ctaDescription) {
+                            ctaDescription.classList.remove('opacity-0', 'translate-y-8');
+                            ctaDescription.classList.add('opacity-100', 'translate-y-0');
+                        }
+                    }, 400);
+                    
+                    // Animar formulario
+                    setTimeout(() => {
+                        if (ctaForm) {
+                            ctaForm.classList.remove('opacity-0', 'translate-y-8');
+                            ctaForm.classList.add('opacity-100', 'translate-y-0');
+                        }
+                    }, 700);
+                    
+                    // Animar texto final
+                    setTimeout(() => {
+                        if (ctaText) {
+                            ctaText.classList.remove('opacity-0', 'translate-y-8');
+                            ctaText.classList.add('opacity-100', 'translate-y-0');
+                        }
+                    }, 1000);
+                    
+                    // Dejar de observar después de la animación
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        // Observar la sección de CTA
+        const ctaSection = document.querySelector('.relative.pb-20');
+        if (ctaSection) {
+            observer.observe(ctaSection);
+        }
+    });
+</script>

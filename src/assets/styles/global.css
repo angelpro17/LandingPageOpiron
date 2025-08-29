@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Floating animations */
+@keyframes float-up-down {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-30px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-30px) rotate(-1deg);
+  }
+}
+
+@keyframes float-up-down-delayed {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-25px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-35px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-25px) rotate(1deg);
+  }
+}
+
+.animate-float-up-down {
+  animation: float-up-down 4s ease-in-out infinite;
+}
+
+.animate-float-up-down-delayed {
+  animation: float-up-down-delayed 5s ease-in-out infinite 1.5s;
+}
+
+/* Logo carousel animation */
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-logo-scroll {
+  animation: logo-scroll 20s linear infinite;
+}

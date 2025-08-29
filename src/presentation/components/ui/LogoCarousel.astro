@@ -1,0 +1,28 @@
+---
+interface Props {
+  logos?: string[];
+  class?: string;
+}
+
+const { logos = [], class: className = '' } = Astro.props;
+
+// Si no se proporcionan logos, usar estos por defecto
+const defaultLogos = [
+  '/logoipsum.webp',
+  '/logoipsum2.webp',
+  '/logoipsum3.webp',
+  '/logoipsum4.webp',
+  '/logoipsum5.webp',
+  '/logoipsum6.webp',
+];
+
+const logosToShow = logos.length > 0 ? logos : defaultLogos;
+---
+
+<div class={`flex flex-wrap justify-center gap-8 md:gap-12 ${className}`}>
+  {logosToShow.map((logo) => (
+    <div class="w-24 h-12 md:w-32 md:h-16 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300">
+      <img src={logo} alt="Logo de integración" class="max-w-full max-h-full object-contain" />
+    </div>
+  ))}
+</div>

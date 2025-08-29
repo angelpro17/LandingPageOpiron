@@ -1,0 +1,46 @@
+---
+interface Feature {
+  text: string;
+}
+
+interface Props {
+  features?: Feature[];
+  class?: string;
+}
+
+const { 
+  features = [
+    { text: "AI-Powered" },
+    { text: "Lightning Fast" },
+    { text: "Customizable" }
+  ], 
+  class: className = '' 
+} = Astro.props;
+---
+
+<div class={`flex flex-wrap justify-center gap-3 mb-8 opacity-0 transform translate-y-8 transition-all duration-1000 ease-out delay-500 ${className}`} id="hero-features">
+  {features.map((feature, index) => (
+    <span class="top-security text-black px-4 py-2 text-sm font-semibold flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 29 28" fill="none" class="mr-2">
+        <rect x="0.5" width="28" height="28" rx="14" fill="white"></rect>
+        <path d="M20.1 9.10001L12.4 16.8" stroke="#FF7357" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M20.8 19.6H8.20001" stroke="#FF7357" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M12.4 16.8L8.90002 13.3" stroke="#FF7357" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      {feature.text}
+    </span>
+  ))}
+</div>
+
+<script>
+  // Animación de entrada para los badges de características
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroFeatures = document.getElementById('hero-features');
+    if (heroFeatures) {
+      setTimeout(() => {
+        heroFeatures.classList.remove('opacity-0', 'translate-y-8');
+        heroFeatures.classList.add('opacity-100', 'translate-y-0');
+      }, 900);
+    }
+  });
+</script>

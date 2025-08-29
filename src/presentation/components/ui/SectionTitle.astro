@@ -1,0 +1,73 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  badge?: string;
+  title: string;
+  description?: string;
+  centered?: boolean;
+  class?: string;
+}
+
+const { 
+  badge, 
+  title, 
+  description, 
+  centered = true, 
+  class: className = '' 
+} = Astro.props;
+---
+
+<div class={`${centered ? 'text-center' : ''} mb-16 ${className}`}>
+  {badge && <Badge text={badge} />}
+  <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 section-title-slide-up" data-title={title}>
+    <slot name="title">{title}</slot>
+  </h2>
+  {description && 
+    <p class="text-xl text-gray-500 max-w-3xl mx-auto section-description-slide-up">
+      <slot name="description">{description}</slot>
+    </p>
+  }
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const titleElements = document.querySelectorAll('.section-title-slide-up');
+        const descriptionElements = document.querySelectorAll('.section-description-slide-up');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target as HTMLElement;
+                    
+                    if (element.classList.contains('section-title-slide-up')) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    } else if (element.classList.contains('section-description-slide-up')) {
+                        setTimeout(() => {
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                    
+                    observer.unobserve(element);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        titleElements.forEach(title => observer.observe(title));
+        descriptionElements.forEach(desc => observer.observe(desc));
+    });
+</script>
+
+<style>
+    .section-title-slide-up,
+    .section-description-slide-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+</style>

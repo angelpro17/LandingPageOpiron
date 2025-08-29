@@ -1,0 +1,196 @@
+---
+import HeroTitle from '../ui/HeroTitle.astro';
+import HeroDescription from '../ui/HeroDescription.astro';
+import HeroFeatureBadges from '../ui/HeroFeatureBadges.astro';
+import EmailForm from '../ui/EmailForm.astro';
+import HeroLogoCarousel from '../ui/HeroLogoCarousel.astro';
+---
+
+<!-- AJUSTAR TAMAÑO: Cambia estos valores de padding para controlar el espaciado lateral -->
+<!-- px-1 md:px-2 lg:px-3 = espaciado muy pequeño para fondo más ancho -->
+<!-- Puedes usar: px-1, px-2, px-3, px-4, px-6, px-8, px-12, px-16, px-20 -->
+<div class="px-4 md:px-5 lg:px-6">
+    <!-- AJUSTAR ANCHO MÁXIMO: Cambia max-w-full para controlar el ancho total -->
+    <!-- Opciones: max-w-4xl, max-w-5xl, max-w-6xl, max-w-7xl, max-w-full -->
+    <!-- AJUSTAR REDONDEADO: Cambia rounded-xl para controlar el redondeado -->
+    <!-- Opciones: rounded-none, rounded-sm, rounded, rounded-md, rounded-lg, rounded-xl, rounded-2xl, rounded-3xl, rounded-full -->
+    <div class="mx-auto max-w-full rounded-xl">
+        <section class=" relative pt-24 pb-16 overflow-hidden" style=" background-image: url('/hero-background.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <!-- Animated floating elements -->
+    <div class="absolute inset-0 pointer-events-none">
+        <!-- Left floating cards - Separadas más del texto central -->
+        <div class="absolute left-2 lg:left-8 xl:left-12 top-1/3 transform -translate-y-1/2 floating-card-left">
+            <img src="/main-dashboard.webp" alt="Dashboard" class="w-48 lg:w-64 xl:w-72 h-auto drop-shadow-lg">
+        </div>
+
+        <!-- Right floating cards - Separadas más del texto central -->
+        <div class="absolute right-2 lg:right-8 xl:right-12 top-1/4 transform -translate-y-1/2 floating-card-right">
+            <img src="/analytics-dashboard.svg" alt="Analytics" class="w-32 lg:w-48 xl:w-56 h-auto drop-shadow-lg floating-img-1">
+        <img src="/statistics-chart.svg" alt="Statistics" class="w-28 lg:w-40 xl:w-48 h-auto drop-shadow-lg floating-img-2">
+
+        </div>
+
+    </div>
+
+    <div class="top-20 container mx-auto px-8 lg:px-12 xl:px-16 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center bg-white text-black px-4 py-2 rounded-full text-sm mb-8">
+                    <span class="bg-black text-white px-2 py-1 rounded-full text-xs mr-2">New</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                        <path d="M16.3333 14.1667V17.5M18 15.8333H14.6667M10.5 2.5C10.5 6.64211 7.14211 10 3 10C7.14211 10 10.5 13.3579 10.5 17.5C10.5 13.3579 13.8579 10 18 10C13.8579 10 10.5 6.64211 10.5 2.5ZM4.66667 2.5C4.66667 3.42047 3.92047 4.16667 3 4.16667C3.92047 4.16667 4.66667 4.91287 4.66667 5.83333C4.66667 4.91287 5.41287 4.16667 6.33333 4.16667C5.41287 4.16667 4.66667 3.42047 4.66667 2.5Z" stroke="#FF7357" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span class=" ml-1">Smart AI Features</span>
+                </div>
+
+                <HeroTitle title="">
+                    Unlock the Power of AI<br>
+                    <span class="text-gray-900"> for Your Business</span>
+                </HeroTitle>
+
+                <HeroDescription text="">
+                    Transform your workflow with cutting-edge AI tools designed to boost productivity and drive innovation.
+                </HeroDescription>
+
+                <HeroFeatureBadges />
+
+                <EmailForm />
+
+                <HeroLogoCarousel />
+            </div>
+        </div>
+    </div>
+</section>
+    </div>
+</div>
+
+<style>
+    /* Animación principal de entrada desde abajo */
+    @keyframes slideUpFloat {
+        0% {
+            transform: translateY(100px) translateX(0) rotate(0deg);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    /* Animación de flotación continua - efecto sutil y lento */
+    @keyframes floatUpDown {
+        0%, 100% {
+            transform: translateY(60px) rotate(0deg);
+        }
+        25% {
+            transform: translateY(20px) rotate(0.5deg);
+        }
+        50% {
+            transform: translateY(-60px) rotate(0deg);
+        }
+        75% {
+            transform: translateY(20px) rotate(-0.5deg);
+        }
+    }
+
+    /* Animación de flotación con rotación sutil y mayor rango */
+    @keyframes floatWithRotation {
+        0%, 100% {
+            transform: translateY(70px) rotate(0deg) scale(1);
+        }
+        25% {
+            transform: translateY(25px) rotate(1deg) scale(1.01);
+        }
+        50% {
+            transform: translateY(-70px) rotate(0deg) scale(1.02);
+        }
+        75% {
+            transform: translateY(25px) rotate(-1deg) scale(1.01);
+        }
+    }
+
+    /* Animación de balanceo lateral con mayor movimiento vertical sutil */
+    @keyframes sideFloat {
+        0%, 100% {
+            transform: translateX(0px) translateY(65px) rotate(0deg);
+        }
+        25% {
+            transform: translateX(6px) translateY(30px) rotate(0.8deg);
+        }
+        50% {
+            transform: translateX(0px) translateY(-65px) rotate(0deg);
+        }
+        75% {
+            transform: translateX(-6px) translateY(30px) rotate(-0.8deg);
+        }
+    }
+
+    /* Aplicar animaciones a las tarjetas con duraciones más lentas y suaves */
+    .floating-card-left {
+        animation: slideUpFloat 1.5s ease-out 0.4s both, floatUpDown 12s ease-in-out infinite 2s;
+    }
+
+    .floating-card-right {
+        animation: slideUpFloat 1.5s ease-out 0.8s both, floatWithRotation 14s ease-in-out infinite 2.5s;
+    }
+
+    .floating-card-right-delayed {
+        animation: slideUpFloat 1.5s ease-out 1.2s both, sideFloat 16s ease-in-out infinite 3s;
+    }
+
+    /* Animaciones adicionales para las imágenes individuales */
+    .floating-img-1 {
+        transition: transform 0.3s ease;
+    }
+
+    .floating-img-1:hover {
+        transform: scale(1.05) rotate(2deg);
+    }
+
+    .floating-img-2 {
+        transition: transform 0.3s ease;
+    }
+
+    .floating-img-2:hover {
+        transform: scale(1.08) rotate(-2deg);
+    }
+
+    /* Efecto de paralaje sutil */
+    @media (min-width: 1024px) {
+        .floating-card-left {
+            transform-origin: center center;
+        }
+
+        .floating-card-right {
+            transform-origin: center center;
+        }
+
+        .floating-card-right-delayed {
+            transform-origin: center center;
+        }
+    }
+
+    /* Responsive adjustments - manteniendo el efecto sutil */
+    @media (max-width: 768px) {
+        .floating-card-left,
+        .floating-card-right,
+        .floating-card-right-delayed {
+            animation-duration: 10s;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(40px) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(0deg); }
+        }
+
+        @keyframes floatWithRotation {
+            0%, 100% { transform: translateY(45px) rotate(0deg); }
+            50% { transform: translateY(-45px) rotate(0.5deg); }
+        }
+
+        @keyframes sideFloat {
+            0%, 100% { transform: translateX(0px) translateY(42px) rotate(0deg); }
+            50% { transform: translateX(2px) translateY(-42px) rotate(0.3deg); }
+        }
+    }
+</style>

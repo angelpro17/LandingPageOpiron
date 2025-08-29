@@ -1,0 +1,44 @@
+---
+interface Props {
+  title?: string;
+  icon?: string;
+  iconBgColor?: string;
+  class?: string;
+  animation?: 'top' | 'stack' | 'none';
+  animationDelay?: number;
+}
+
+const { 
+  title, 
+  icon, 
+  iconBgColor = '#FF7357',
+  class: className = '',
+  animation = 'none',
+  animationDelay = 0
+} = Astro.props;
+
+let animationClass = '';
+let dataAttribute = '';
+
+if (animation === 'top') {
+  animationClass = 'feature-card-top transition-all duration-700 opacity-0 transform translate-y-16 scale-90 hover:scale-105 hover:shadow-2xl';
+  dataAttribute = 'data-feature-top';
+} else if (animation === 'stack') {
+  animationClass = 'feature-card-stack transition-all duration-700 opacity-0 transform translate-y-20 rotate-3 scale-95';
+  dataAttribute = 'data-feature-stack';
+}
+---
+
+<div class={`bg-white rounded-xl p-4 ${animationClass} ${className}`} data-feature-top={animation === 'top' ? animationDelay.toString() : undefined} data-feature-stack={animation === 'stack' ? animationDelay.toString() : undefined} style="transform-style: preserve-3d;">
+  {(title || icon) && (
+    <div class="flex items-center mb-3">
+      {icon && (
+        <div class={`w-8 h-8 bg-[${iconBgColor}] rounded-lg flex items-center justify-center mr-2`}>
+          <Fragment set:html={icon} />
+        </div>
+      )}
+      {title && <h3 class="text-base font-semibold text-gray-900">{title}</h3>}
+    </div>
+  )}
+  <slot />
+</div>

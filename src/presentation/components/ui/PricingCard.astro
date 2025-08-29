@@ -1,0 +1,61 @@
+---
+interface Props {
+  name: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
+  features: string[];
+  buttonText: string;
+  buttonLink: string;
+  popular?: boolean;
+  class?: string;
+}
+
+const { 
+  name, 
+  monthlyPrice, 
+  yearlyPrice, 
+  features, 
+  buttonText, 
+  buttonLink, 
+  popular = false, 
+  class: className = '' 
+} = Astro.props;
+---
+
+<div class={`bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow h-full flex flex-col ${className}`}>
+  
+  <!-- Header Section - Fixed Height -->
+  <div class="flex-shrink-0">
+    <h3 class="text-lg font-medium text-gray-900 mb-4 h-6">{name}</h3>
+    <div class="mb-6 h-16 flex items-end">
+      <div>
+        <span class="monthly-price text-4xl font-bold text-gray-900">{monthlyPrice}</span>
+        <span class="yearly-price hidden text-4xl font-bold text-gray-900">{yearlyPrice}</span>
+        <span class="monthly-period text-gray-600">/month</span>
+        <span class="yearly-period hidden text-gray-600">/year</span>
+      </div>
+    </div>
+    <hr class="border-gray-200 mb-6">
+  </div>
+  
+  <!-- Features Section - Flexible Height -->
+  <div class="flex-grow flex flex-col">
+    <ul class="space-y-3 mb-6 flex-grow">
+      {features.map((feature) => (
+        <li class="flex items-start text-sm">
+          <svg class="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span class="text-gray-700 leading-relaxed">{feature}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+  
+  <!-- Button Section - Fixed at Bottom -->
+  <div class="flex-shrink-0 mt-4">
+    <a href={buttonLink} class="block w-full py-3 px-4 rounded-xl text-center font-medium transition-colors bg-gray-900 text-white hover:bg-gray-800">
+      {buttonText}
+    </a>
+  </div>
+</div>

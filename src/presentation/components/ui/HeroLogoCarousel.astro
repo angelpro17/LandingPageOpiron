@@ -1,0 +1,84 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`mt-12 ${className}`}>
+  <div class="logo-carousel-container overflow-hidden py-6 rounded-2xl">
+    <div class="logo-carousel-track animate-logo-scroll flex items-center gap-12">
+      <!-- First set of logos -->
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum2.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum3.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum4.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum5.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum6.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <!-- Duplicate set for seamless loop -->
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum2.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum3.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum4.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum5.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+      <div class="flex-shrink-0 px-6">
+        <img src="/logoipsum6.webp" alt="Logoipsum" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .logo-carousel-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .logo-carousel-track {
+    width: calc(200% + 96px);
+    animation: logo-scroll-left-to-right 20s linear infinite;
+  }
+
+  @keyframes logo-scroll-left-to-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .logo-carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .logo-carousel-track {
+      animation-duration: 15s;
+    }
+  }
+</style>
