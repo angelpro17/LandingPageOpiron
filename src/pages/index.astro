@@ -1,11 +1,24 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Header from '../presentation/components/sections/Header.astro';
+import Hero from '../presentation/components/sections/Hero.astro';
+import CoreValues from '../presentation/components/sections/CoreValues.astro';
+import Pricing from '../presentation/components/sections/Pricing.astro';
+import FAQ from '../presentation/components/sections/FAQ.astro';
+import Footer from '../presentation/components/sections/Footer.astro';
+import Testimonials from '../presentation/components/sections/Testimonials.astro';
+import Features from '../presentation/components/sections/Features.astro';
+import Integration from '../presentation/components/sections/Integration.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Opiron - Unlock the Power of AI for Your Business">
+	<Header />
+	<Hero />
+	<Features/>
+	<CoreValues />
+	<Pricing />
+	<FAQ />
+	<Testimonials />
+	<Integration />
+	<Footer />
 </Layout>
